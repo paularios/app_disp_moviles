@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie</title>
+    <meta name="viewport" content="minimal-ui, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="format-detection" content="telephone=no" />
+
+	<link rel="stylesheet" href="mobileui/mui.min.css" type="text/css">
+    <link rel="stylesheet" href="custom/custom.css" type="text/css">
+
+    <script src="phonegap.js"></script>		
+ 	<script src="vendors/fastclick.min.js" type="text/javascript"></script>    	 	
+    	
+    <script src="vendors/jquery.min.js" type="text/javascript"></script>
+    <script src="vendors/jquery.animate-enhanced.js" type="text/javascript"></script>
+	<script src="vendors/jqwait/jquery.wait.min.js" type="text/javascript"></script>   
+    <script src="vendors/iscroll-min.js" type="text/javascript"></script>
+    
+	<script src="mobileui/mui.min.js" type="text/javascript"></script>
+    <script src="custom/custom.js" type="text/javascript"></script>
+</head>
+<body>
+    <div id="mui-screen" class="mui-viewport">
+		<div id="mui-screen-page" class="mui-page">
+			<div id="mui-viewport" class="mui-viewport">
+			
+			<!-- Página de inicio  *************************************************************************************-->
+				<div id="home-page" class="mui-page">
+					<div class="movie-header">
+						<div class="movie-page-logo"></div>
+					</div>
+					<div class="mui-page-body" id="home-body">
+						<div id="select-cinema-complex-div">
+							<select id="select-cinema-complex">
+								<option value="0" default>Todos los complejos</option>
+								<option value="1">Movie Montevideo</option>
+								<option value="2">Movie Nuevocentro</option>
+								<option value="3">Movie Portones</option>
+								<option value="4">Movie Punta Carretas</option>
+							</select>
+						</div>
+						<input type="button" class="movie-btn" id="search-movies" name="search-movies" value="Buscar películas">
+					</div>
+				</div>
+				
+			<!-- Página que muestra las películas **********************************************************************-->
+				<div id="movies-page" class="mui-page">
+					<div class="movie-header">
+						<a class="mui-backarrow" href="#"></a>
+						<div class="movie-page-logo"></div>
+					</div>
+					<div class="mui-page-body mui-scrollable" id="movies-body">
+						<span class="filter-selected">Todos los complejos</span>
+						<div> <!-- important for scroll! -->
+							<div class="movie-div">
+								<div class="movie-poster">
+								</div>
+								<div class="movie-info">
+								<!-- QUE MOSTRAMOS ACA ADEMAS DE TITULO Y DURACION? Descripcion capaz es muy largo-->
+								</div>
+							 	<!-- titulo y demas info excepto horarios y trailer-->	
+							</div>
+							<!--DE ESTOS VA UNO SOLO, LOS DEMAS SE CREAN DINAMICAMENTE -->
+							
+						</div>
+					</div>
+				</div>
+
+				<!-- Página de horarios*********************************************************************************-->
+				<div id="timetable-page" class="mui-page">
+					<div class="mui-page-header">
+						<a class="mui-backarrow" href="#"></a>
+						<div class="movie-page-logo"></div>
+					</div>
+					<div class="mui-page-body mui-scrollable" id="timetable-body">
+						<div> <!-- important for scroll! -->
+							<!-- horarios de la pelicula y trailer que trae de youtube -->
+						</div>
+					</div>
+				</div>				
+			</div>	
+		</div>					 
+    </div>
+</body>
+</html>
