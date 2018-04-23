@@ -34,16 +34,17 @@
 				<div id='home-page' class="mui-page">
 					<div class="mui-page-body" id="home-body">
 						<div id="result-bar"> 
-							<input type="text" id="result" value="0" readonly></input>
+							<input type="hidden" id="hidden_result">
+							<input type="text" id="result" value="0">
 						</div>
 						<div id="button-board">
 							<div id="numbers-extra-board">
 								<div id="extra-board">
 									<div class="circle-button-div"> 
-										<input type="button" class="circle-button circle-button-extra-board" value="AC">
+										<input type="button" class="circle-button circle-button-extra-board" value="AC" onclick="delete_characters()">
 									</div>
 									<div class="circle-button-div">
-										<input type="button" class="circle-button circle-button-extra-board" value="+/-">
+										<input type="button" class="circle-button circle-button-extra-board" value="+/-" onclick="change_sign()">
 									</div>
 									<div class="circle-button-div">
 										<input type="button" class="circle-button circle-button-extra-board" value="%">
@@ -52,63 +53,62 @@
 								<div id="number-board">
 									<div class="number-row">
 										<div class="circle-button-div"> 
-											<input type="button" class="circle-button circle-button-number-board" value="7">
+											<input type="button" class="circle-button circle-button-number-board" value="7" onclick="write_number(this.value)">
 										</div>
 										<div class="circle-button-div"> 
-											<input type="button" class="circle-button circle-button-number-board" value="8">
+											<input type="button" class="circle-button circle-button-number-board" value="8" onclick="write_number(this.value)">
 										</div>
 										<div class="circle-button-div"> 
-											<input type="button" class="circle-button circle-button-number-board" value="9">
-										</div>
-									</div>
-									<div class="number-row">
-										<div class="circle-button-div"> 
-											<input type="button" class="circle-button circle-button-number-board" value="4">
-										</div>
-										<div class="circle-button-div"> 
-											<input type="button" class="circle-button circle-button-number-board" value="5">
-										</div>
-										<div class="circle-button-div"> 
-											<input type="button" class="circle-button circle-button-number-board" value="6">
+											<input type="button" class="circle-button circle-button-number-board" value="9" onclick="write_number(this.value)">
 										</div>
 									</div>
 									<div class="number-row">
 										<div class="circle-button-div"> 
-											<input type="button" class="circle-button circle-button-number-board" value="1">
+											<input type="button" class="circle-button circle-button-number-board" value="4" onclick="write_number(this.value)">
 										</div>
 										<div class="circle-button-div"> 
-											<input type="button" class="circle-button circle-button-number-board" value="2">
+											<input type="button" class="circle-button circle-button-number-board" value="5" onclick="write_number(this.value)">
 										</div>
 										<div class="circle-button-div"> 
-											<input type="button" class="circle-button circle-button-number-board" value="3">
+											<input type="button" class="circle-button circle-button-number-board" value="6" onclick="write_number(this.value)">
+										</div>
+									</div>
+									<div class="number-row">
+										<div class="circle-button-div"> 
+											<input type="button" class="circle-button circle-button-number-board" value="1" onclick="write_number(this.value)">
+										</div>
+										<div class="circle-button-div"> 
+											<input type="button" class="circle-button circle-button-number-board" value="2" onclick="write_number(this.value)">
+										</div>
+										<div class="circle-button-div"> 
+											<input type="button" class="circle-button circle-button-number-board" value="3" onclick="write_number(this.value)">
 										</div>
 									</div>
 									<div class="number-row">
 										<div id="zero-button-div" class="circle-button-div"> 
-											
-											<input type="button" id="zero-button" class="circle-button circle-button-number-board" value="&nbsp 0">
+											<input type="button" id="zero-button" class="circle-button circle-button-number-board" value="&nbsp 0" onclick="write_number(this.value)">
 										</div>
 										<div class="circle-button-div"> 
-											<input type="button" class="circle-button circle-button-number-board" value=",">
+											<input type="button" class="circle-button circle-button-number-board" value="," onclick="write_number(this.value)">
 										</div>
 									</div>
 								</div>
 							</div>
 							<div id="operators-board">
 								<div class="circle-button-div-operators-board"> 
-									<input type="button" class="circle-button circle-button-operators-board" value="÷">
+									<input type="button" class="circle-button circle-button-operators-board" value="÷" onclick="operation('/')">
 								</div>
 								<div class="circle-button-div-operators-board"> 
-									<input type="button" class="circle-button circle-button-operators-board" value="×">
+									<input type="button" class="circle-button circle-button-operators-board" value="×" onclick="operation('*')">
 								</div>
 								<div class="circle-button-div-operators-board"> 
-									<input type="button" class="circle-button circle-button-operators-board" value="-">
+									<input type="button" class="circle-button circle-button-operators-board" value="-" onclick="operation('-')">
 								</div>
 								<div class="circle-button-div-operators-board"> 
-									<input type="button" class="circle-button circle-button-operators-board" value="+">
+									<input type="button" class="circle-button circle-button-operators-board" value="+" onclick="operation('+')">
 								</div>
 								<div class="circle-button-div-operators-board"> 
-									<input type="button" class="circle-button circle-button-operators-board" value="=">
+									<input type="button" class="circle-button circle-button-operators-board" value="=" onclick="calculate('+')">
 								</div>
 							</div>
 						</div>
@@ -119,5 +119,51 @@
 			</div>	
 		</div>	
     </div>
+    <script type="text/javascript">
+    
+    	function delete_characters(){
+    		document.getElementById("result").value = "0";
+    		document.getElementById("hidden_result").value = "0";
+    	}
+
+		function write_number(n){
+			var result = document.getElementById("result").value;
+			if (result == "0" && n != ","){
+				document.getElementById("result").value = result.replace("0", "") + n;
+			}
+			else{
+				document.getElementById("result").value = n;
+			}
+		}
+
+		function operation(operator){
+			var hidden_result = document.getElementById("hidden_result").value;
+			var result = document.getElementById("result").value;
+			calculate()
+			if (hidden_result == "" && result != ""){
+				document.getElementById("hidden_result").value = result + operator;
+			}else{
+				document.getElementById("hidden_result").value = hidden_result + result + operator;
+	 		}
+		}
+
+		function calculate(){
+			var hidden_result = document.getElementById("hidden_result").value;
+			var result = document.getElementById("result").value;
+			var operation = hidden_result + result; //concateno los strings
+			document.getElementById("result").value = eval(operation);
+			document.getElementById("hidden_result").value = "";
+		}
+
+		function change_sign(){
+			var result = document.getElementById("result").value;
+			if (result > 0){
+				document.getElementById("result").value = "-" + result;
+			}else{
+				document.f1.txtcaja2.value = result.replace("-", "");
+			}
+		}
+
+    </script>
 </body>
 </html>
